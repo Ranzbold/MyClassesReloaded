@@ -39,6 +39,7 @@ public class Equipper {
 		}
 		p.teleport(p.getWorld().getSpawnLocation());
 		p.setFireTicks(0);
+		System.out.println("hallo");
 
 	}
 
