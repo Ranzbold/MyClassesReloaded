@@ -68,9 +68,10 @@ public class Equipper {
 	
 	static void testfunktion(String str){
 		str = str + ".";
-		int i = 9;
+		Bukkit.broadcastMessage("SwagLord");
+		int i = 20;
 		str = str + Integer.toString(i);
-		System.out.println(str);
+		System.out.println(str + "toll");
 	}
 	
 	public static void heavy(Player p) {
