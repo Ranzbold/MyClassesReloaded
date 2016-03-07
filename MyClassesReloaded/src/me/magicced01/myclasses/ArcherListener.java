@@ -40,6 +40,7 @@ public class ArcherListener implements Listener {
 							Bukkit.broadcastMessage(victim.getName()+ " hat nun " + Integer.toString(StatsManager.getDeaths(p.getName())) + " Tode");
 							Bukkit.broadcastMessage(shooter.getName()+ " hat nun eine Killstreak von " + Integer.toString(StatsManager.getKillstreak(shooter.getName())) + " Kills");
 							e.setCancelled(true);
+							Bukkit.broadcastMessage("Test");
 
 							
 
