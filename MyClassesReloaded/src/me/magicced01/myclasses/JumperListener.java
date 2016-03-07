@@ -85,7 +85,6 @@ public class JumperListener implements Listener {
 			 lastJumperList = jumperlist.toString();
 			 
 		 }
-		Bukkit.broadcastMessage(jumperlist.toString());
 
 		if (MC.PlayerClassCache.get(e.getPlayer().getName()) == "jumper") {
 			if (jumperlist.contains(e.getPlayer().getName())) {
