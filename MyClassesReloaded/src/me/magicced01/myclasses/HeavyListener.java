@@ -2,6 +2,7 @@ package me.magicced01.myclasses;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -36,6 +37,8 @@ public class HeavyListener implements Listener {
 									ent.setVelocity(vector);
 
 								}
+								e.getPlayer().getWorld().playSound(e.getPlayer().getLocation(), Sound.ENTITY_BLAZE_HURT, 5, 1);
+								e.getPlayer().getWorld().playSound(e.getPlayer().getLocation(), Sound.ENTITY_LIGHTNING_THUNDER, 2, 2);
 								StatsManager.resetKillstreak(p.getName());
 
 							}
