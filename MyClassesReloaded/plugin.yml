@@ -1,0 +1,7 @@
+main: me.magicced01.myclasses.MC
+version: 1.0
+name: MyClassesReloaded
+
+commands:
+  myclasses:
+    description: General Command
