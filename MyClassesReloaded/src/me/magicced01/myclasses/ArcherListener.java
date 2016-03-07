@@ -9,6 +9,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
 public class ArcherListener implements Listener {
+	
+	@SuppressWarnings("unused")
 	private MC plugin;
 
 	public ArcherListener(MC plugin) {

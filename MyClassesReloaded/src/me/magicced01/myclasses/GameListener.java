@@ -10,6 +10,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 
 public class GameListener implements Listener {
+	@SuppressWarnings("unused")
 	private MC plugin;
 
 	public GameListener(MC plugin) {
