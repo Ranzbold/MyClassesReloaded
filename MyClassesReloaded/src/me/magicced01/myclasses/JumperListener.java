@@ -16,7 +16,12 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.util.Vector;
 
+
+
 public class JumperListener implements Listener {
+	
+	public String lastJumperList = "";
+	
 	private MC plugin;
 	List<String> jumperlist = new ArrayList<String>();
 
@@ -75,17 +80,20 @@ public class JumperListener implements Listener {
 
 	@EventHandler
 	public void onPlayerLand(PlayerMoveEvent e) {
+		 if (jumperlist.toString() != lastJumperList){
+			 Bukkit.broadcastMessage(jumperlist.toString());
+			 lastJumperList = jumperlist.toString();
+			 
+		 }
 		Bukkit.broadcastMessage(jumperlist.toString());
 
 		if (MC.PlayerClassCache.get(e.getPlayer().getName()) == "jumper") {
-			Bukkit.broadcastMessage("PlayerClassCache");
 			if (jumperlist.contains(e.getPlayer().getName())) {
-				Bukkit.broadcastMessage("JumperMap");
 				if (!((e.getFrom().getBlockY() > e.getTo().getBlockY()) && (e.getPlayer().getLocation().getWorld()
 						.getBlockAt(e.getPlayer().getLocation().getBlockX(),
 								e.getPlayer().getLocation().getBlockY() - 1, e.getPlayer().getLocation().getBlockZ())
 						.getType().equals(Material.AIR)))) {
-					Bukkit.broadcastMessage("Höhenprüfung");
+					Bukkit.broadcastMessage("Gelandet");
 
 
 					for (Entity ent : e.getPlayer().getNearbyEntities(20D, 20D, 20D)) {
