@@ -65,7 +65,14 @@ public class Equipper {
 		p.getInventory().setBoots(new ItemStack(boots));
 
 	}
-
+	
+	static void testfunktion(String str){
+		str = str + ".";
+		int i = 9;
+		str = str + Integer.toString(i);
+		System.out.println(str);
+	}
+	
 	public static void heavy(Player p) {
 
 		playerRespawn(p);
