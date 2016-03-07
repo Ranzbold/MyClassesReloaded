@@ -71,6 +71,7 @@ public class Equipper {
 		System.out.println("holla");
 		int i = 7;
 		str = str + Integer.toString(i);
+		System.out.println(str + "toll");
 	}
 	
 	public static void heavy(Player p) {
