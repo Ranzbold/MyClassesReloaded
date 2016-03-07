@@ -65,15 +65,7 @@ public class Equipper {
 		p.getInventory().setBoots(new ItemStack(boots));
 
 	}
-	
-	static void testfunktion(String str){
-		str = str + ".";
-		System.out.println("holla");
-		int i = 7;
-		str = str + Integer.toString(i);
-		System.out.println(str + "toll");
-	}
-	
+		
 	public static void heavy(Player p) {
 
 		playerRespawn(p);
@@ -192,8 +184,7 @@ public class Equipper {
 		sword.setItemMeta(meta);
 		sword.addEnchantment(swordenchant, effectlvl);
 		ItemMeta feathermeta = feather.getItemMeta();
-		feathermeta.setDisplayName("§6§lASCEND!");
-				
+		feathermeta.setDisplayName("§6§lASCEND!");				
 		p.getInventory().setArmorContents(new ItemStack[p.getInventory().getArmorContents().length]);
 		p.getInventory().setHelmet(new ItemStack(helmet));
 		p.getInventory().setChestplate(new ItemStack(chestplate));
@@ -202,6 +193,7 @@ public class Equipper {
 		p.getInventory().addItem(new ItemStack[] { sword });
 		p.getInventory().addItem(new ItemStack[] { feather });
 		p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 50000, 14), true);
+
 	}
 
 	public static void ninja(Player p) {

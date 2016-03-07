@@ -1,5 +1,8 @@
 package me.magicced01.myclasses;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.Location;
@@ -15,6 +18,7 @@ import org.bukkit.util.Vector;
 
 public class JumperListener implements Listener {
 	private MC plugin;
+	List<String> jumperlist = new ArrayList<String>();
 
 	public JumperListener(MC plugin) {
 		this.plugin = plugin;
@@ -31,14 +35,15 @@ public class JumperListener implements Listener {
 						p.setVelocity(v);
 
 						Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
-
 							public void run() {
+								if (!jumperlist.contains(e.getPlayer().getName())) {
+									jumperlist.add(e.getPlayer().getName());
+								}
 								Vector v2 = new Vector(5D, 200D, 5D);
 								p.setVelocity(p.getEyeLocation().getDirection().multiply(v2));
+
 							}
 						}, 34L);
-						MC.JumperMap.put(p.getName(), true);
-
 
 					} else {
 						e.getPlayer().sendMessage("$4Deine Killstreak ist noch nicht groß genug");
@@ -70,17 +75,18 @@ public class JumperListener implements Listener {
 
 	@EventHandler
 	public void onPlayerLand(PlayerMoveEvent e) {
+		Bukkit.broadcastMessage(jumperlist.toString());
 
 		if (MC.PlayerClassCache.get(e.getPlayer().getName()) == "jumper") {
 			Bukkit.broadcastMessage("PlayerClassCache");
-			if (MC.JumperMap.get(e.getPlayer().getName()) == true) {
-				Bukkit.broadcastMessage("JumerMap");
-
+			if (jumperlist.contains(e.getPlayer().getName())) {
+				Bukkit.broadcastMessage("JumperMap");
 				if (!((e.getFrom().getBlockY() > e.getTo().getBlockY()) && (e.getPlayer().getLocation().getWorld()
 						.getBlockAt(e.getPlayer().getLocation().getBlockX(),
 								e.getPlayer().getLocation().getBlockY() - 1, e.getPlayer().getLocation().getBlockZ())
 						.getType().equals(Material.AIR)))) {
 					Bukkit.broadcastMessage("Höhenprüfung");
+
 
 					for (Entity ent : e.getPlayer().getNearbyEntities(20D, 20D, 20D)) {
 						Vector extoent = ent.getLocation().toVector().subtract(e.getPlayer().getLocation().toVector());
@@ -94,13 +100,12 @@ public class JumperListener implements Listener {
 
 					}
 
-					MC.JumperMap.put(e.getPlayer().getName(), false);
 					Bukkit.broadcastMessage("Ende");
-
+					if(jumperlist.contains(e.getPlayer().getName()))
+					{
+						jumperlist.remove(e.getPlayer().getName());
+					}
 				}
-			} else {
-				MC.JumperMap.put(e.getPlayer().getName(), false);
-
 			}
 		}
 
