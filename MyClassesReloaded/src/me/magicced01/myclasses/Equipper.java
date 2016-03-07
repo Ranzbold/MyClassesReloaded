@@ -68,9 +68,9 @@ public class Equipper {
 	
 	static void testfunktion(String str){
 		str = str + ".";
-		int i = 9;
+		System.out.println("holla");
+		int i = 7;
 		str = str + Integer.toString(i);
-		System.out.println(str);
 	}
 	
 	public static void heavy(Player p) {
