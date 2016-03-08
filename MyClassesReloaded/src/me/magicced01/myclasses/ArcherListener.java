@@ -93,7 +93,8 @@ public class ArcherListener implements Listener {
 							Arrow a = (Arrow) arrowSpot.getWorld().spawnEntity(arrowSpot, EntityType.ARROW);
 							arrows.add(a);
 							a.setVelocity(new Vector(0, -1, 0));
-							a.setVelocity(a.getVelocity().multiply(5));
+							a.setVelocity(a.getVelocity().multiply(4
+									));
 							a.setCritical(true);
 							a.setFireTicks(1000);
 							
@@ -108,7 +109,7 @@ public class ArcherListener implements Listener {
 									Arrow a = (Arrow) arrowSpot.getWorld().spawnEntity(arrowSpot, EntityType.ARROW);
 									arrows.add(a);
 									a.setVelocity(new Vector(0, -1, 0));
-									a.setVelocity(a.getVelocity().multiply(5));
+									a.setVelocity(a.getVelocity().multiply(4));
 									a.setCritical(true);
 									a.setFireTicks(1000);
 									
