@@ -111,11 +111,9 @@ public class JumperListener implements Listener {
 					}
 				}
 			}
-			else{
-				if (e.getTo().getBlockY() > e.getFrom().getBlockY()){
-					Bukkit.broadcastMessage("Sprung erkannt");
-					//e.getPlayer().setVelocity(e.getPlayer().getVelocity().multiply(5));
-				}
+			if (e.getTo().getBlockY() > e.getFrom().getBlockY()){
+				Bukkit.broadcastMessage("Sprung erkannt");
+				//e.getPlayer().setVelocity(e.getPlayer().getVelocity().multiply(5));
 			}
 		}
 
