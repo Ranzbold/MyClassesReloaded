@@ -2,7 +2,6 @@ package me.magicced01.myclasses;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;

@@ -17,7 +17,6 @@ import org.bukkit.potion.PotionEffectType;
 import net.minecraft.server.v1_9_R1.PacketPlayInClientCommand;
 import net.minecraft.server.v1_9_R1.PacketPlayInClientCommand.EnumClientCommand;
 
-
 public class Equipper {
 	private static void playerRespawn(Player p) {
 		try {
@@ -65,11 +64,10 @@ public class Equipper {
 		p.getInventory().setBoots(new ItemStack(boots));
 
 	}
-		
+
 	public static void heavy(Player p) {
 
 		playerRespawn(p);
-		
 
 		int knockbackid = 19;
 		int knockbacklevel = 1;
@@ -111,14 +109,11 @@ public class Equipper {
 		ItemMeta metashield = shield.getItemMeta();
 		shield.setDurability((short) 10);
 		metashield.setDisplayName("Mithrilschild");
-		
+
 		ItemStack goldpick = new ItemStack(Material.GOLD_PICKAXE);
 		ItemMeta metapick = goldpick.getItemMeta();
 		metapick.setDisplayName("§6§lCHARGE!");
 		goldpick.setItemMeta(metapick);
-
-
-		
 
 		axe.addUnsafeEnchantment(knockback, knockbacklevel);
 		axe.addEnchantment(unbreaking, unbreakinglevel);
@@ -132,13 +127,12 @@ public class Equipper {
 		p.getInventory().setItemInOffHand(shield);
 		p.getInventory().addItem(new ItemStack[] { goldpick });
 
-		
-
 	}
 
 	public static void scout(Player p) {
 		playerRespawn(p);
 		int effectidarcher1 = 48;
+
 		int enchlevelarcher1 = 2;
 
 		p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 50000, 0), true);
@@ -148,7 +142,7 @@ public class Equipper {
 		ItemStack chestplate = new ItemStack(Material.CHAINMAIL_CHESTPLATE);
 		ItemStack leggins = new ItemStack(Material.CHAINMAIL_LEGGINGS);
 		ItemStack boots = new ItemStack(Material.CHAINMAIL_BOOTS);
-		ItemStack arrows = new ItemStack(Material.ARROW, 32);
+		ItemStack arrows = new ItemStack(Material.SPECTRAL_ARROW, 128);
 		ItemStack item = new ItemStack(Material.BOW);
 		ItemMeta meta = item.getItemMeta();
 		ItemStack sword = new ItemStack(Material.WOOD_SWORD);
@@ -188,7 +182,7 @@ public class Equipper {
 		sword.setItemMeta(meta);
 		sword.addEnchantment(swordenchant, effectlvl);
 		ItemMeta feathermeta = feather.getItemMeta();
-		feathermeta.setDisplayName("§6§lASCEND!");				
+		feathermeta.setDisplayName("§6§lASCEND!");
 		p.getInventory().setArmorContents(new ItemStack[p.getInventory().getArmorContents().length]);
 		p.getInventory().setHelmet(new ItemStack(helmet));
 		p.getInventory().setChestplate(new ItemStack(chestplate));
