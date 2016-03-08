@@ -3,6 +3,7 @@ package me.magicced01.myclasses;
 import java.util.ConcurrentModificationException;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.craftbukkit.v1_9_R1.entity.CraftPlayer;
@@ -11,6 +12,7 @@ import org.bukkit.enchantments.EnchantmentWrapper;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -196,22 +198,45 @@ public class Equipper {
 
 	public static void ninja(Player p) {
 		playerRespawn(p);
-		p.sendMessage("You have chosen the Class Ninja!");
-		int swordid = 16;
-		int swordlevel = 6;
-		Enchantment swordenchant = new EnchantmentWrapper(swordid);
-		ItemStack sword = new ItemStack(Material.GOLD_SWORD);
-		ItemStack boots = new ItemStack(Material.GOLD_BOOTS);
-		ItemMeta meta = sword.getItemMeta();
-		meta.setDisplayName("§bAngelic Dagger of massive Destrcution");
-		sword.setItemMeta(meta);
-		sword.addUnsafeEnchantment(swordenchant, swordlevel);
-		ItemStack enderpearls = new ItemStack(Material.ENDER_PEARL, 4);
-		p.getInventory().addItem(new ItemStack[] { sword });
-		p.getInventory().setArmorContents(new ItemStack[p.getInventory().getArmorContents().length]);
-		p.getInventory().setBoots(new ItemStack(boots));
-		p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 50000, 2), true);
-		p.getInventory().addItem(new ItemStack[] { enderpearls });
+        int swordid = 16;
+        int swordlevel = 6;
+        Enchantment swordenchant = new EnchantmentWrapper(swordid);
+        ItemStack sword = new ItemStack(Material.GOLD_SWORD);
+        ItemStack boots = new ItemStack(Material.LEATHER_BOOTS);
+        ItemStack leggings = new ItemStack(Material.LEATHER_LEGGINGS);
+        ItemStack chestplate = new ItemStack(Material.LEATHER_CHESTPLATE);
+        ItemStack helmet = new ItemStack(Material.LEATHER_HELMET);
+        ItemStack flint = new ItemStack(Material.FLINT);
+
+        LeatherArmorMeta mboots = (LeatherArmorMeta)boots.getItemMeta();
+        LeatherArmorMeta mleggings = (LeatherArmorMeta)boots.getItemMeta();
+        LeatherArmorMeta mchestplate = (LeatherArmorMeta)boots.getItemMeta();
+        LeatherArmorMeta mhelmet = (LeatherArmorMeta)boots.getItemMeta();
+        mboots.setColor(Color.BLACK);
+        mleggings.setColor(Color.BLACK);
+        mchestplate.setColor(Color.BLACK);
+        mhelmet.setColor(Color.BLACK);
+        boots.setItemMeta(mboots);
+        leggings.setItemMeta(mleggings);
+        chestplate.setItemMeta(mchestplate);
+        helmet.setItemMeta(mhelmet);
+
+      
+        ItemMeta meta = sword.getItemMeta();
+        meta.setDisplayName("§bAngelic Dagger of massive Destrcution");
+        sword.setItemMeta(meta);
+        sword.addUnsafeEnchantment(swordenchant, swordlevel);
+        ItemStack enderpearls = new ItemStack(Material.ENDER_PEARL,1);
+        p.getInventory().addItem(new ItemStack[] { sword });
+        p.getInventory().setArmorContents(new ItemStack[p.getInventory().getArmorContents().length]);
+        p.getInventory().setBoots(new ItemStack(boots));  
+        p.getInventory().setLeggings(new ItemStack(leggings));   
+        p.getInventory().setChestplate(new ItemStack(chestplate));   
+        p.getInventory().setHelmet(new ItemStack(helmet));   
+        p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 50000, 0), true);
+        p.getInventory().addItem(new ItemStack[] { enderpearls });
+        p.getInventory().addItem(new ItemStack[] { flint });
+
 	}
 
 	public static void pyro(Player p) {
