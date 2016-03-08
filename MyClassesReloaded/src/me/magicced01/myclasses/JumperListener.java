@@ -39,7 +39,7 @@ public class JumperListener implements Listener {
 						Vector v = new Vector(0D, 70D, 0D);
 						Player p = e.getPlayer();
 						p.setVelocity(v);
-						e.getPlayer().getWorld().playSound(e.getPlayer().getLocation(), Sound.ENTITY_WITHER_AMBIENT, 5, 1);
+						e.getPlayer().getWorld().playSound(e.getPlayer().getLocation(), Sound.ENTITY_WITHER_AMBIENT, 10, 1);
 
 
 						Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
@@ -49,7 +49,7 @@ public class JumperListener implements Listener {
 								}
 								Vector v2 = new Vector(5D, 200D, 5D);
 								p.setVelocity(p.getEyeLocation().getDirection().multiply(v2));
-								e.getPlayer().getWorld().playSound(e.getPlayer().getLocation(), Sound.ENTITY_WITHER_SPAWN, 5, 1);
+								e.getPlayer().getWorld().playSound(e.getPlayer().getLocation(), Sound.ENTITY_WITHER_SPAWN, 10, 1);
 
 
 							}
