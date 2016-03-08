@@ -20,11 +20,16 @@ import org.bukkit.util.Vector;
 
 public class ArcherListener implements Listener {
 
-	@SuppressWarnings("unused")
 	private MC plugin;
+	List<Arrow> arrows = new ArrayList<Arrow>();
 
 	public ArcherListener(MC plugin) {
 		this.plugin = plugin;
+	}
+
+	public static double random() {
+		double randomNum = Math.random() * 0.5;
+		return randomNum;
 	}
 
 	@EventHandler
@@ -65,7 +70,8 @@ public class ArcherListener implements Listener {
 		}
 
 	}
-@EventHandler
+
+	@EventHandler
 	public void onStringRightClick(PlayerInteractEvent e) {
 		if (e.hasItem()) {
 			if (e.getItem().getType().equals(Material.STICK)) {
@@ -73,28 +79,46 @@ public class ArcherListener implements Listener {
 					if (StatsManager.getKillstreak(e.getPlayer().getName()) >= 0) {
 						Player p = e.getPlayer();
 						Block block = p.getTargetBlock((Set<Material>) null, 50);
-						Location loc = block.getLocation().add(0, 170, 0);
+						Location loc = block.getLocation().add(0, 100, 0);
 						List<Location> locs = new ArrayList<Location>();
-						for(double x = -7; x <= 7; x = x + 1) 
-						{
-							for(double z = -7; z <= 7; z = z + 1)
-							{
-								locs.add(loc.clone().add(x, 0, z));
+						for (double x = -7; x <= 7; x = x + 1) {
+							for (double z = -7; z <= 7; z = z + 1) {
+								locs.add(loc.clone().add(x + random(), 0, z + random()));
 							}
 						}
-						for(Location arrowSpot : locs) 
-							
+						for (Location arrowSpot : locs)
+
 						{
-							 
-							Arrow a= (Arrow) arrowSpot.getWorld().spawnEntity(arrowSpot, EntityType.ARROW);
-							a.setVelocity(new Vector(0,-5,0));
+
+							Arrow a = (Arrow) arrowSpot.getWorld().spawnEntity(arrowSpot, EntityType.ARROW);
+							arrows.add(a);
+							a.setVelocity(new Vector(0, -1, 0));
+							a.setVelocity(a.getVelocity().multiply(5));
 							a.setCritical(true);
 							a.setFireTicks(1000);
-						
 							
-
 						}
+						Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
 
+							public void run() {
+								for (Location arrowSpot : locs)
+
+								{
+
+									Arrow a = (Arrow) arrowSpot.getWorld().spawnEntity(arrowSpot, EntityType.ARROW);
+									arrows.add(a);
+									a.setVelocity(new Vector(0, -1, 0));
+									a.setVelocity(a.getVelocity().multiply(5));
+									a.setCritical(true);
+									a.setFireTicks(1000);
+									
+								}
+				
+
+							}
+						}, 5L);
+
+						
 
 					}
 				}
