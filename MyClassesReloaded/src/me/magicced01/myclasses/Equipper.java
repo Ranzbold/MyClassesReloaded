@@ -192,7 +192,7 @@ public class Equipper {
 		p.getInventory().setBoots(new ItemStack(boots));
 		p.getInventory().addItem(new ItemStack[] { sword });
 		p.getInventory().addItem(new ItemStack[] { feather });
-		p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 50000, 14), true);
+		//p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 50000, 14), true);
 
 	}
 
