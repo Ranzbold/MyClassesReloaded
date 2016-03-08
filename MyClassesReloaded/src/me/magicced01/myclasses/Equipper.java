@@ -152,6 +152,8 @@ public class Equipper {
 		ItemStack item = new ItemStack(Material.BOW);
 		ItemMeta meta = item.getItemMeta();
 		ItemStack sword = new ItemStack(Material.WOOD_SWORD);
+		ItemStack stick = new ItemStack(Material.STICK);
+
 		meta.setDisplayName("§4Bone Crusher");
 		item.setItemMeta(meta);
 		item.addEnchantment(ench1, enchlevelarcher1);
@@ -159,6 +161,8 @@ public class Equipper {
 		p.getInventory().addItem(new ItemStack[] { sword });
 		p.getInventory().addItem(new ItemStack[] { item });
 		p.getInventory().addItem(new ItemStack[] { arrows });
+		p.getInventory().addItem(new ItemStack[] { stick });
+
 		p.getInventory().setArmorContents(new ItemStack[p.getInventory().getArmorContents().length]);
 		p.getInventory().setHelmet(new ItemStack(helmet));
 		p.getInventory().setChestplate(new ItemStack(chestplate));
