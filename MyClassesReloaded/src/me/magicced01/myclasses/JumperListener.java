@@ -54,12 +54,12 @@ public class JumperListener implements Listener {
 						}, 34L);
 
 					} else {
-						e.getPlayer().sendMessage("$4Deine Killstreak ist noch nicht groß genug");
+						e.getPlayer().sendMessage("§4Deine Killstreak ist noch nicht groß genug");
 
 					}
 
 				} else {
-					e.getPlayer().sendMessage("$4Du bist kein Jumper");
+					e.getPlayer().sendMessage("§4Du bist kein Jumper");
 				}
 
 			}
@@ -82,6 +82,7 @@ public class JumperListener implements Listener {
 		}
 
 	}
+	
 
 	@SuppressWarnings("deprecation")
 	@EventHandler
