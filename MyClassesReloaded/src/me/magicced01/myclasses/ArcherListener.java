@@ -76,7 +76,7 @@ public class ArcherListener implements Listener {
 		if (e.hasItem()) {
 			if (e.getItem().getType().equals(Material.STICK)) {
 				if (MC.PlayerClassCache.get(e.getPlayer().getName()) == "scout") {
-					if (StatsManager.getKillstreak(e.getPlayer().getName()) >= 0) {
+					if (StatsManager.getKillstreak(e.getPlayer().getName()) >= 2) {
 						Player p = e.getPlayer();
 						Block block = p.getTargetBlock((Set<Material>) null, 50);
 						Location loc = block.getLocation().add(0, 100, 0);
@@ -118,6 +118,7 @@ public class ArcherListener implements Listener {
 
 							}
 						}, 5L);
+						StatsManager.resetKillstreak(e.getPlayer().getName());
 
 						
 
@@ -128,5 +129,6 @@ public class ArcherListener implements Listener {
 		}
 
 	}
+	
 
 }

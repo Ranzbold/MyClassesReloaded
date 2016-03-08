@@ -23,7 +23,7 @@ public class HeavyListener implements Listener {
 	public void onPickRightClick(PlayerInteractEvent e) {
 		if (e.hasItem()) {
 			if (e.getItem().getType().equals(Material.GOLD_PICKAXE)) {
-				if (StatsManager.getKillstreak(e.getPlayer().getName()) >= 0) {
+				if (StatsManager.getKillstreak(e.getPlayer().getName()) >= 2) {
 					if (MC.PlayerClassCache.get(e.getPlayer().getName()) == "heavy") {
 						Player p = e.getPlayer();
 						Vector mult = new Vector(5D, 0D, 5D);
@@ -46,6 +46,7 @@ public class HeavyListener implements Listener {
 								StatsManager.resetKillstreak(p.getName());
 								p.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 200, 2), true);
 								p.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 600, 4), true);
+								StatsManager.resetKillstreak(e.getPlayer().getName());
 						
 
 							}

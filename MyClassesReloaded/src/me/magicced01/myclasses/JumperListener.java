@@ -17,12 +17,10 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.util.Vector;
 
-
-
 public class JumperListener implements Listener {
-	
+
 	public String lastJumperList = "";
-	
+
 	private MC plugin;
 	List<String> jumperlist = new ArrayList<String>();
 
@@ -35,12 +33,12 @@ public class JumperListener implements Listener {
 		if (e.hasItem()) {
 			if (e.getItem().getType().equals(Material.FEATHER)) {
 				if (MC.PlayerClassCache.get(e.getPlayer().getName()) == "jumper") {
-					if (StatsManager.getKillstreak(e.getPlayer().getName()) >= 0) {
+					if (StatsManager.getKillstreak(e.getPlayer().getName()) >= 2) {
 						Vector v = new Vector(0D, 70D, 0D);
 						Player p = e.getPlayer();
 						p.setVelocity(v);
-						e.getPlayer().getWorld().playSound(e.getPlayer().getLocation(), Sound.ENTITY_WITHER_AMBIENT, 10, 1);
-
+						e.getPlayer().getWorld().playSound(e.getPlayer().getLocation(), Sound.ENTITY_WITHER_AMBIENT, 10,
+								1);
 
 						Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
 							public void run() {
@@ -49,8 +47,8 @@ public class JumperListener implements Listener {
 								}
 								Vector v2 = new Vector(5D, 200D, 5D);
 								p.setVelocity(p.getEyeLocation().getDirection().multiply(v2));
-								e.getPlayer().getWorld().playSound(e.getPlayer().getLocation(), Sound.ENTITY_WITHER_SPAWN, 10, 1);
-
+								e.getPlayer().getWorld().playSound(e.getPlayer().getLocation(),
+										Sound.ENTITY_WITHER_SPAWN, 10, 1);
 
 							}
 						}, 34L);
@@ -76,6 +74,8 @@ public class JumperListener implements Listener {
 			if (e.getCause().equals(EntityDamageEvent.DamageCause.FALL)) {
 				if (MC.PlayerClassCache.get(p.getName()) == "jumper") {
 					e.setCancelled(true);
+
+
 				}
 			}
 
@@ -87,29 +87,25 @@ public class JumperListener implements Listener {
 	@EventHandler
 	public void onPlayerLand(PlayerMoveEvent e) {
 
-
 		if (MC.PlayerClassCache.get(e.getPlayer().getName()) == "jumper") {
 			if (jumperlist.contains(e.getPlayer().getName())) {
-				if(e.getPlayer().isOnGround() == true) {
+				if (e.getPlayer().isOnGround() == true) {
 					for (Entity ent : e.getPlayer().getNearbyEntities(25D, 25D, 25D)) {
 						Vector extoent = ent.getLocation().toVector().subtract(e.getPlayer().getLocation().toVector());
 						double distance = ent.getLocation().distance(e.getPlayer().getLocation());
 						extoent = extoent.multiply(25 / (distance * distance));
-						extoent.setY(14D/distance*0.75);
-						e.getPlayer().getWorld().playSound(e.getPlayer().getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 5, 1);
-						e.getPlayer().getPlayer().getWorld().playSound(e.getPlayer().getLocation(), Sound.ENTITY_LIGHTNING_THUNDER, 5, 1);
-
-
-
-
+						extoent.setY(14D / distance * 0.75);
+						e.getPlayer().getWorld().playSound(e.getPlayer().getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 5,
+								1);
+						e.getPlayer().getPlayer().getWorld().playSound(e.getPlayer().getLocation(),
+								Sound.ENTITY_LIGHTNING_THUNDER, 5, 1);
 
 						ent.setVelocity(extoent);
-						generateShockwave(e.getPlayer().getLocation(), 20,Effect.EXPLOSION_LARGE);
+						generateShockwave(e.getPlayer().getLocation(), 20, Effect.EXPLOSION_LARGE);
 
 					}
 
-					if(jumperlist.contains(e.getPlayer().getName()))
-					{
+					if (jumperlist.contains(e.getPlayer().getName())) {
 						jumperlist.remove(e.getPlayer().getName());
 					}
 				}
