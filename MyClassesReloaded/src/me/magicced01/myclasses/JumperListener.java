@@ -96,18 +96,20 @@ public class JumperListener implements Listener {
 					for (Entity ent : p.getNearbyEntities(6D, 6, 6)) {
 						Vector extoent = ent.getLocation().toVector().subtract(p.getLocation().toVector());
 						double distance = ent.getLocation().distance(p.getLocation());
-						extoent = extoent.multiply(25 / (distance * distance));
+						extoent = extoent.multiply(2 / (distance * distance));
 						extoent.setY((2D / distance * 0.75));
-						extoent.multiply(e.getDamage()*0.1);
-						p.getWorld().playSound(p.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 5,
-								1);
-						p.getPlayer().getWorld().playSound(p.getLocation(),
-								Sound.ENTITY_LIGHTNING_THUNDER, 5, 1);
+						extoent.multiply(e.getDamage()*0.05);
+
 
 						ent.setVelocity(extoent);
-						generateShockwave(p.getLocation(), 20, Effect.EXPLOSION_LARGE);
 
 					}
+					p.getWorld().playSound(p.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 5,
+							1);
+					p.getPlayer().getWorld().playSound(p.getLocation(),
+							Sound.ENTITY_LIGHTNING_THUNDER, 5, 1);
+					generateShockwave(p.getLocation(), 20, Effect.EXPLOSION_LARGE);
+
 					e.setCancelled(true);
 
 				}
@@ -129,15 +131,17 @@ public class JumperListener implements Listener {
 						double distance = ent.getLocation().distance(e.getPlayer().getLocation());
 						extoent = extoent.multiply(25 / (distance * distance));
 						extoent.setY(14D / distance * 0.75);
-						e.getPlayer().getWorld().playSound(e.getPlayer().getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 5,
-								1);
-						e.getPlayer().getPlayer().getWorld().playSound(e.getPlayer().getLocation(),
-								Sound.ENTITY_LIGHTNING_THUNDER, 5, 1);
 
 						ent.setVelocity(extoent);
-						generateShockwave(e.getPlayer().getLocation(), 20, Effect.EXPLOSION_LARGE);
+
 
 					}
+					e.getPlayer().getWorld().playSound(e.getPlayer().getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 5,
+							1);
+					e.getPlayer().getPlayer().getWorld().playSound(e.getPlayer().getLocation(),
+							Sound.ENTITY_LIGHTNING_THUNDER, 5, 1);
+
+					generateShockwave(e.getPlayer().getLocation(), 20, Effect.EXPLOSION_LARGE);
 
 					if (jumperlist.contains(e.getPlayer().getName())) {
 						jumperlist.remove(e.getPlayer().getName());
