@@ -278,5 +278,24 @@ public class Equipper {
 		p.getInventory().addItem(new ItemStack[] { arrows });
 
 	}
+	public static void engineer(Player p)
+	{
+		playerRespawn(p);
+		p.sendMessage("You have chosen the Class Engineer");
+		ItemStack sword = new ItemStack(Material.IRON_SWORD);
+		ItemStack dispenser = new ItemStack(Material.DISPENSER);
+		ItemStack stick = new ItemStack(Material.STICK);		
+		ItemStack arrow = new ItemStack(Material.ARROW,128);
+
+
+		p.getInventory().setArmorContents(new ItemStack[p.getInventory().getArmorContents().length]);
+		p.getInventory().addItem(new ItemStack[] { sword });
+		p.getInventory().addItem(new ItemStack[] { dispenser });
+		p.getInventory().addItem(new ItemStack[] { stick });
+		p.getInventory().addItem(new ItemStack[] { arrow });
+
+
+
+	}
 
 }

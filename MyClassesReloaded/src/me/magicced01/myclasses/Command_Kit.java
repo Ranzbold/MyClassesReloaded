@@ -58,6 +58,11 @@ public class Command_Kit implements CommandExecutor {
 						startClassAllocation(p, "jumper");
 
 					}
+					if (args[0].equals("engineer")) {
+						Equipper.engineer(p);
+						startClassAllocation(p, "engineer");
+
+					}
 				}
 			}
 		}

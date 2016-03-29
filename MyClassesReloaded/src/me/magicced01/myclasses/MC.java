@@ -25,6 +25,7 @@ public class MC extends JavaPlugin {
 		pm.registerEvents(new HeavyListener(this), this);
 		pm.registerEvents(new JumperListener(this), this);
 		pm.registerEvents(new NinjaListener(this), this);
+		pm.registerEvents(new EngineerListener(this),this);
 
 
 		Bukkit.getConsoleSender().sendMessage("[MyClasses] Plugin successfully enabled");

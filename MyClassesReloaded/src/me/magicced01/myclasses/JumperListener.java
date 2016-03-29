@@ -101,6 +101,7 @@ public class JumperListener implements Listener {
 							extoent = extoent.multiply(2 / (distance * distance));
 							extoent.setY((2D / distance * 0.75));
 							extoent.multiply(e.getDamage() * 0.05);
+							
 
 							ent.setVelocity(extoent);
 
