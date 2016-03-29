@@ -116,6 +116,10 @@ public class Equipper {
 		ItemMeta metapick = goldpick.getItemMeta();
 		metapick.setDisplayName("§6§lCHARGE!");
 		goldpick.setItemMeta(metapick);
+		
+		ItemStack angel = new ItemStack(Material.FISHING_ROD);
+		ItemMeta metaangel = angel.getItemMeta();
+		metaangel.setDisplayName("§6§lHiergeblieben!");
 
 		axe.addUnsafeEnchantment(knockback, knockbacklevel);
 		axe.addEnchantment(unbreaking, unbreakinglevel);

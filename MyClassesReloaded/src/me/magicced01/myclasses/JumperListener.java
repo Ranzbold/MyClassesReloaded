@@ -29,6 +29,26 @@ public class JumperListener implements Listener {
 	}
 
 	@EventHandler
+	public void onSwordRightClick(PlayerInteractEvent e) {
+		if (e.hasItem()) {
+			if (e.hasBlock()) {
+
+				if (MC.PlayerClassCache.get(e.getPlayer().getName()) == "jumper") {
+					if (e.getItem().getType().equals(Material.IRON_SWORD)) {
+						if (!e.getClickedBlock().equals(Material.AIR)) {
+							Vector v = new Vector(0D, 1.5D, 0D);
+							Player p = e.getPlayer();
+							p.setVelocity(v);
+						}
+					}
+
+				}
+			}
+
+		}
+	}
+
+	@EventHandler
 	public void onFeatherRightClick(PlayerInteractEvent e) {
 		if (e.hasItem()) {
 			if (e.getItem().getType().equals(Material.FEATHER)) {
@@ -73,8 +93,21 @@ public class JumperListener implements Listener {
 			Player p = (Player) e.getEntity();
 			if (e.getCause().equals(EntityDamageEvent.DamageCause.FALL)) {
 				if (MC.PlayerClassCache.get(p.getName()) == "jumper") {
-					e.setCancelled(true);
+					for (Entity ent : p.getNearbyEntities(6D, 6, 6)) {
+						Vector extoent = ent.getLocation().toVector().subtract(p.getLocation().toVector());
+						double distance = ent.getLocation().distance(p.getLocation());
+						extoent = extoent.multiply(25 / (distance * distance));
+						extoent.setY(e.getDamage()*(2D / distance * 0.75));
+						p.getWorld().playSound(p.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 5,
+								1);
+						p.getPlayer().getWorld().playSound(p.getLocation(),
+								Sound.ENTITY_LIGHTNING_THUNDER, 5, 1);
 
+						ent.setVelocity(extoent);
+						generateShockwave(p.getLocation(), 20, Effect.EXPLOSION_LARGE);
+
+					}
+					e.setCancelled(true);
 
 				}
 			}
@@ -82,7 +115,6 @@ public class JumperListener implements Listener {
 		}
 
 	}
-	
 
 	@SuppressWarnings("deprecation")
 	@EventHandler
@@ -110,10 +142,6 @@ public class JumperListener implements Listener {
 						jumperlist.remove(e.getPlayer().getName());
 					}
 				}
-			}
-			if ((e.getTo().getBlockY() > e.getFrom().getBlockY()) && (!e.getFrom().subtract(0, 1, 0).getBlock().getType().equals(Material.AIR))){
-				Bukkit.broadcastMessage("Sprung erkannt");
-				e.getPlayer().setVelocity(e.getPlayer().getVelocity().multiply(5));
 			}
 		}
 
