@@ -97,7 +97,8 @@ public class JumperListener implements Listener {
 						Vector extoent = ent.getLocation().toVector().subtract(p.getLocation().toVector());
 						double distance = ent.getLocation().distance(p.getLocation());
 						extoent = extoent.multiply(25 / (distance * distance));
-						extoent.setY(e.getDamage()*(2D / distance * 0.75));
+						extoent.setY((2D / distance * 0.75));
+						extoent.multiply(e.getDamage()*0.1);
 						p.getWorld().playSound(p.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 5,
 								1);
 						p.getPlayer().getWorld().playSound(p.getLocation(),
