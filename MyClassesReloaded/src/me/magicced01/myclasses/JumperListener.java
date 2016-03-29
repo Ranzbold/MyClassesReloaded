@@ -53,7 +53,7 @@ public class JumperListener implements Listener {
 		if (e.hasItem()) {
 			if (e.getItem().getType().equals(Material.FEATHER)) {
 				if (MC.PlayerClassCache.get(e.getPlayer().getName()) == "jumper") {
-					if (StatsManager.getKillstreak(e.getPlayer().getName()) >= 2) {
+					if (StatsManager.getKillstreak(e.getPlayer().getName()) >= 0) {
 						Vector v = new Vector(0D, 70D, 0D);
 						Player p = e.getPlayer();
 						p.setVelocity(v);
@@ -93,23 +93,20 @@ public class JumperListener implements Listener {
 			Player p = (Player) e.getEntity();
 			if (e.getCause().equals(EntityDamageEvent.DamageCause.FALL)) {
 				if (MC.PlayerClassCache.get(p.getName()) == "jumper") {
-					for (Entity ent : p.getNearbyEntities(6D, 6, 6)) {
-						Vector extoent = ent.getLocation().toVector().subtract(p.getLocation().toVector());
-						double distance = ent.getLocation().distance(p.getLocation());
-						extoent = extoent.multiply(2 / (distance * distance));
-						extoent.setY((2D / distance * 0.75));
-						extoent.multiply(e.getDamage()*0.05);
+					if (e.getDamage() >= 11) {
+						Bukkit.broadcastMessage(Double.toString(e.getDamage()));
+						for (Entity ent : p.getNearbyEntities(6D, 6, 6)) {
+							Vector extoent = ent.getLocation().toVector().subtract(p.getLocation().toVector());
+							double distance = ent.getLocation().distance(p.getLocation());
+							extoent = extoent.multiply(2 / (distance * distance));
+							extoent.setY((2D / distance * 0.75));
+							extoent.multiply(e.getDamage() * 0.05);
 
+							ent.setVelocity(extoent);
 
-						ent.setVelocity(extoent);
-
+						}
+						p.getWorld().playSound(p.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 5, 1);
 					}
-					p.getWorld().playSound(p.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 5,
-							1);
-					p.getPlayer().getWorld().playSound(p.getLocation(),
-							Sound.ENTITY_LIGHTNING_THUNDER, 5, 1);
-					generateShockwave(p.getLocation(), 20, Effect.EXPLOSION_LARGE);
-
 					e.setCancelled(true);
 
 				}
@@ -134,10 +131,8 @@ public class JumperListener implements Listener {
 
 						ent.setVelocity(extoent);
 
-
 					}
-					e.getPlayer().getWorld().playSound(e.getPlayer().getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 5,
-							1);
+					e.getPlayer().getWorld().playSound(e.getPlayer().getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 5, 1);
 					e.getPlayer().getPlayer().getWorld().playSound(e.getPlayer().getLocation(),
 							Sound.ENTITY_LIGHTNING_THUNDER, 5, 1);
 
